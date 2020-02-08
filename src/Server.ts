@@ -1,6 +1,7 @@
 import { Server } from "@overnightjs/core";
 import * as bodyParser from "body-parser";
 import { UserController } from "./controllers/UserController";
+import { ValidationController } from "./controllers/ValidationController";
 export default class MainServer extends Server {
 
     constructor() {
@@ -19,9 +20,10 @@ export default class MainServer extends Server {
 
     private setupControllers(): void {
         const userController = new UserController();
+        const validationController = new ValidationController();
 
         // This must be called, and can be passed a single controller or an array of
         // controllers. Optional router object can also be passed as second argument.
-        super.addControllers([userController]);
+        super.addControllers([userController, validationController]);
     }
 }
